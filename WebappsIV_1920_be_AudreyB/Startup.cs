@@ -6,10 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WebappsIV_1920_be_AudreyB.Data;
+using WebappsIV_1920_be_AudreyB.Data.Repository;
+using WebappsIV_1920_be_AudreyB.Models;
 
 namespace WebappsIV_1920_be_AudreyB
 {
@@ -34,10 +38,15 @@ namespace WebappsIV_1920_be_AudreyB
                 s.Version = "v1";
                 s.Description = "The documentation of de film and serie API";
             });
+            services.AddDbContext<FilmContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("FilmContext")));
+            
+            services.AddScoped<FilmDataInitializer>();
+            services.AddScoped<IFilmRepository, FilmRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env /*FilmDataInitializer filmDataInitializer*/)
         {
             if (env.IsDevelopment())
             {
@@ -56,6 +65,7 @@ namespace WebappsIV_1920_be_AudreyB
             {
                 endpoints.MapControllers();
             });
+            //filmDataInitializer.InitializeData();
         }
     }
 }
