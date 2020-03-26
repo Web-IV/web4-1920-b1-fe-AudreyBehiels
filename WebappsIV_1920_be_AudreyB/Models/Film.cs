@@ -14,10 +14,13 @@ namespace WebappsIV_1920_be_AudreyB.Models
         [Required]
         public string Titel { get; set; }
         public DateTime Duur { get; set; }
-        public String Genre { get; set; }
-        public List<string> Acteurs { get; set; }
+        public ICollection<Genre> Genre { get; set; }
+        public ICollection<string> Acteurs { get; set; }
         public string Regiseur { get; set; }
-        public List<string> Schrijvers { get; set; }
+        public ICollection<string> Schrijvers { get; set; }
+        public string KortInhoud { get; set; }
+        public string Productie { get; set; }
+        public DateTime Jaar { get; set; }
         // Film affiche  
         #endregion
 
@@ -26,15 +29,17 @@ namespace WebappsIV_1920_be_AudreyB.Models
         {
 
         }
-        public Film(string titel, DateTime duur, string genre, List<String> acteurs, string regiseur, List<string> schrijvers)
+        public Film(string titel, DateTime jaar, DateTime duur, ICollection<Genre> genre, List<String> acteurs, string regiseur, List<string> schrijvers, string korteInhoud, string productie)
         {
             this.Titel = titel;
+            this.Jaar = jaar;
             this.Duur = duur;
             this.Genre = genre;
             this.Acteurs = acteurs;
             this.Regiseur = regiseur;
             this.Schrijvers = schrijvers;
-
+            this.KortInhoud = korteInhoud;
+            this.Productie = productie;
         }
         #endregion
 

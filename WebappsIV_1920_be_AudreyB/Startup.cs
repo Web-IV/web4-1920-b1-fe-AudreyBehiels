@@ -34,9 +34,9 @@ namespace WebappsIV_1920_be_AudreyB
             services.AddOpenApiDocument(s =>
             {
                 s.DocumentName = "APIdocs";
-                s.Title = "Film and serie API";
+                s.Title = "Film API";
                 s.Version = "v1";
-                s.Description = "The documentation of de film and serie API";
+                s.Description = "De documentatie van de film API";
             });
             services.AddDbContext<FilmContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("FilmContext")));
