@@ -1,12 +1,27 @@
-<div
-  fxLayout="row wrap"
-  fxLayout.xs="column"
-  fxLayoutGap="0.5%"
-  fxLayoutAlign="start"
->
-<div class="film" *ngFor="let localFilm of films"
-fxFlex="0 0 calc(40%-0.5%)"
-    fxFlex.xs="100%">
-    <app-film [film]="localFilm"></app-film>
-</div>
+<div fxLayout="column" fxLayoutGap="2%">
+  <mat-card>
+    <mat-form-field>
+      <input matInput placeholder="Film titel" type="text" #filter />
+    </mat-form-field>
+    <button (click)="applyFilter(filter.value)" mat-raised-button>
+      Zoek
+    </button>
+  </mat-card>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.xs="column"
+    fxLayoutGap="0.5%"
+    fxLayoutAlign="start"
+  >
+    <div
+      class="film"
+      *ngFor="let localFilm of films | filmFilter: filterFilmTitel"
+      fxFlex="0 0 calc(33%-0.5%)"
+      fxFlex.xs="100%"
+      style="padding-bottom: 10px;"
+    >
+      <app-film [film]="localFilm"></app-film>
+    </div>
+  </div>
 </div>

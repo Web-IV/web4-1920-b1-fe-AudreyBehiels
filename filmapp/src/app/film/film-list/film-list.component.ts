@@ -8,8 +8,13 @@ import { FilmDataService } from "../film-data.service";
   styleUrls: ["./film-list.component.css"]
 })
 export class FilmListComponent implements OnInit {
-  // private _films = FILMS;
+  public filterFilmTitel: string;
+
   constructor(private _filmDataService: FilmDataService) {}
+
+  applyFilter(filter: string) {
+    this.filterFilmTitel = filter;
+  }
 
   get films() {
     return this._filmDataService.films;
