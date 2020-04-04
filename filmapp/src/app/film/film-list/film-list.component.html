@@ -1,1 +1,3 @@
-<p>film-list works!</p>
+<div class="film" *ngFor="let localFilm of films">
+    <app-film [film]="localFilm"></app-film>
+</div>

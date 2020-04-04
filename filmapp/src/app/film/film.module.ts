@@ -8,6 +8,6 @@ import { FilmListComponent } from './film-list/film-list.component';
 @NgModule({
   declarations: [FilmComponent, FilmListComponent],
   imports: [CommonModule, MaterialModule ],
-  exports: [FilmComponent]
+  exports: [FilmListComponent]
 })
 export class FilmModule { }
