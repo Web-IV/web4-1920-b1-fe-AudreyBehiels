@@ -1,3 +1,12 @@
-<div class="film" *ngFor="let localFilm of films">
+<div
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutGap="0.5%"
+  fxLayoutAlign="start"
+>
+<div class="film" *ngFor="let localFilm of films"
+fxFlex="0 0 calc(40%-0.5%)"
+    fxFlex.xs="100%">
     <app-film [film]="localFilm"></app-film>
+</div>
 </div>

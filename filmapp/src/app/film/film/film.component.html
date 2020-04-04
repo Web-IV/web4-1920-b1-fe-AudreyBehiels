@@ -1,12 +1,20 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>
-      <mat-icon>movie</mat-icon>
+    <mat-card-title style="font-weight: bold;">
+      <mat-icon>movie</mat-icon> {{film.titel}}
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <mat-list>
-      <mat-list-item *ngFor="let filmItem of film">{{filmItem}}</mat-list-item>
-    </mat-list>
+      {{film.jaar | date:'yyyy'}}
+      <br>Duur: {{film.duur}} minuten
+      <br>{{film.genres}}
+      <br>Regisseur: {{film.regisseur}}
+      <br>Schrijvers: {{film.schrijvers}}
+      <br>Acteurs: {{film.acteurs}}
+      <br>productiebedrijf: {{film.productiebedrijf}}
+      <br><br><strong>Korte inhoud:</strong><br>{{film.korteInhoud}}
+      <!-- <mat-list-item *ngFor="let filmItem of film">{{filmItem}}</mat-list-item>
+    --> </mat-list>
   </mat-card-content>
 </mat-card>
