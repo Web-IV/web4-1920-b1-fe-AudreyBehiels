@@ -2,15 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { FilmComponent } from './film/film.component';
+import { FilmModule } from './film/film.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FilmComponent
+  declarations: [AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FilmModule
   ],
   providers: [],
   bootstrap: [AppComponent]
