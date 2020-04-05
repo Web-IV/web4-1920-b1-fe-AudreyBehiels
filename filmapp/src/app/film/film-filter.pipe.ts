@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import { Film } from "./film.model";
 @Pipe({
-  name: "filmFilter"
+  name: "filmFilter",
 })
 export class FilmFilterPipe implements PipeTransform {
   transform(films: Film[], titel: string): Film[] {
@@ -9,7 +9,7 @@ export class FilmFilterPipe implements PipeTransform {
       return films;
     }
     return films.filter(
-      film => film.titel.toLowerCase() == titel.toLowerCase()
+      (film) => film.titel.toLowerCase() == titel.toLowerCase()
     );
   }
 }

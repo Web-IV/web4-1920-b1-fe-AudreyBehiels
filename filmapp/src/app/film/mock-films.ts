@@ -17,7 +17,7 @@ const JsonFilms = [
       "Ondanks hun totaal verschillende afkomst worden ze vrienden en al snel groeit een verboden liefde tussen hen allebei."
   } ,
   {
-    titel: "Titanic",
+    titel: "Footloose",
     jaar: "1997",
     duur: "194",
     regisseur: "James Cameron",
@@ -32,7 +32,7 @@ const JsonFilms = [
       "Ondanks hun totaal verschillende afkomst worden ze vrienden en al snel groeit een verboden liefde tussen hen allebei."
   },
   {
-    titel: "Titanic",
+    titel: "Tiranosaurus",
     jaar: "1997",
     duur: "194",
     regisseur: "James Cameron",

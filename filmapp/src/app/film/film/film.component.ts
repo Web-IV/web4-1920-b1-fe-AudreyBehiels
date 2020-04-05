@@ -7,7 +7,7 @@ import{Film} from '../film.model';
   styleUrls: ['./film.component.css']
 })
 export class FilmComponent implements OnInit {
- 
+
  @Input() public film : Film;
   constructor() {  }
 
