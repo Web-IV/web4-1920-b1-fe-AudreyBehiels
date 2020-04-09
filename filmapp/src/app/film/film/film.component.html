@@ -8,13 +8,21 @@
     <mat-list>
       {{film.jaar | date:'yyyy'}}
       <br>Duur: {{film.duur}} minuten
-      <br>Genre: {{ film.genres}}
+      <br>Genre:
+      <div *ngFor="let genre of film.filmGenres" style="display: inline-flex;">
+        <app-film-genre [filmGenre]="genre"></app-film-genre>
+      </div>
       <br>Regisseur: {{film.regisseur}}
-      <br>Schrijvers: {{film.schrijvers}}
-      <br>Acteurs: {{film.acteurs}}
-      <br>productiebedrijf: {{film.productiebedrijf}}
+      <br>Schrijvers:
+      <div *ngFor="let schrijver of film.filmSchrijvers" style="display: inline-flex;">
+        <app-film-schrijver [filmSchrijver]="schrijver"></app-film-schrijver>  
+      </div>
+      <br>Acteurs:
+      <div *ngFor="let acteur of film.filmActeurs" style="display: inline-flex;">
+        <app-film-acteur [filmActeur]="acteur"></app-film-acteur> 
+      </div>
+      <br>Productiebedrijf: {{film.productiebedrijf}}
       <br><br><strong>Korte inhoud:</strong><br>{{film.korteInhoud}}
-      <!-- <mat-list-item *ngFor="let filmItem of film">{{filmItem}}</mat-list-item>
-    --> </mat-list>
+    </mat-list>
   </mat-card-content>
 </mat-card>

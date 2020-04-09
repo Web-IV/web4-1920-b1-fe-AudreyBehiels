@@ -1,11 +1,15 @@
+import { FilmGenreJson, FilmGenre } from './filmGenre.model';
+import { FilmSchrijver, FilmSchrijverJson } from './filmSchrijver.model';
+import { FilmActeur, FilmActeurJson } from './filmActeur.model';
+
 interface FilmJson {
   titel: string;
   jaar: string;
   duur: string;
   regisseur: string;
-  genres: string[];
-  schrijvers: string[];
-  acteurs: string[];
+  filmGenres: FilmGenreJson[];
+  filmSchrijvers: FilmSchrijverJson[];
+  filmActeurs: FilmActeurJson[];
   productiebedrijf: string;
   korteInhoud: string;
 }
@@ -16,9 +20,9 @@ export class Film {
     private _jaar = new Date(),
     private _duur: string,
     private _regisseur: string,
-    private _genres = new Array<string>(),
-    private _schrijvers = new Array<string>(),
-    private _acteurs = new Array<string>(),
+    private _filmGenres = new Array<FilmGenre>(),
+    private _filmSchrijvers = new Array<FilmSchrijver>(),
+    private _filmActeurs = new Array<FilmActeur>(),
     private _productiebedrijf: string,
     private _korteInhoud: string
   ) {}
@@ -29,9 +33,9 @@ export class Film {
       new Date(json.jaar),
       json.duur,
       json.regisseur,
-      json.genres,
-      json.schrijvers,
-      json.acteurs,
+      json.filmGenres.map(FilmGenre.fromJSON),
+      json.filmSchrijvers.map(FilmSchrijver.fromJSON),
+      json.filmActeurs.map(FilmActeur.fromJSON),
       json.productiebedrijf,
       json.korteInhoud
     );
@@ -50,14 +54,14 @@ export class Film {
   get regisseur(): string {
     return this._regisseur;
   }
-  get genres(): string[] {
-    return this._genres;
+  get filmGenres(): FilmGenre[] {
+    return this._filmGenres;
   }
-  get schrijvers(): string[] {
-    return this._schrijvers;
+  get filmSchrijvers(): FilmSchrijver[] {
+    return this._filmSchrijvers;
   }
-  get acteurs(): string[] {
-    return this._acteurs;
+  get filmActeurs(): FilmActeur[] {
+    return this._filmActeurs;
   }
   get productiebedrijf(): string {
     return this._productiebedrijf;
