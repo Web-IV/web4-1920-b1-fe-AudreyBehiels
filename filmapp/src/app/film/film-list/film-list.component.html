@@ -12,10 +12,10 @@
     <div 
     fxLayout="row wrap" 
     fxLayout.xs="column" 
-    fxLayoutGap="0.5%" 
+    fxLayoutGap="0.533%" 
     fxLayoutAlign="start">
       <div class="film" *ngFor="let localFilm of (films$ | async | filmFilter: filterFilmTitel)"
-        fxFlex="0 0 calc(33%-0.5%)" fxFlex.xs="100%" style="padding-bottom: 10px;">
+        fxFlex="0 0 calc(33.3%-0.5%)" fxFlex.xs="100%" style="padding-bottom: 10px;">
         <app-film [film]="localFilm"></app-film>
       </div>
     </div>
@@ -25,7 +25,6 @@
     <mat-card class="error" *ngIf="errorMessage">
       Error loading the recipe list: {{ errorMessage }}. <br />
       Please try again later.
-
     </mat-card>
   </ng-template>
 </div>

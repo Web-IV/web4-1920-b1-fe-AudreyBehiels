@@ -5,24 +5,24 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <mat-list>
-      {{film.jaar | date:'yyyy'}}
-      <br>Duur: {{film.duur}} minuten
-      <br>Genre:
-      <div *ngFor="let genre of film.filmGenres" style="display: inline-flex;">
+    <mat-list class="filmInfo">
+      <b>Jaar: </b>{{film.jaar | date:'yyyy'}}
+      <br><b>Duur: </b>{{film.duur}} minuten
+      <br><b>Genre: </b>
+      <div *ngFor="let genre of film.filmGenres" class="naamWeergave">
         <app-film-genre [filmGenre]="genre"></app-film-genre>
       </div>
-      <br>Regisseur: {{film.regisseur}}
-      <br>Schrijvers:
-      <div *ngFor="let schrijver of film.filmSchrijvers" style="display: inline-flex;">
-        <app-film-schrijver [filmSchrijver]="schrijver"></app-film-schrijver>  
+      <br><b>Regisseur: </b>{{film.regisseur}}
+      <br><b>Schrijvers: </b>
+      <div *ngFor="let schrijver of film.filmSchrijvers" class="naamWeergave">
+        <app-film-schrijver [filmSchrijver]="schrijver"></app-film-schrijver>
       </div>
-      <br>Acteurs:
-      <div *ngFor="let acteur of film.filmActeurs" style="display: inline-flex;">
-        <app-film-acteur [filmActeur]="acteur"></app-film-acteur> 
+      <br><b>Acteurs: </b>
+      <div *ngFor="let acteur of film.filmActeurs" class="naamWeergave">
+        <app-film-acteur [filmActeur]="acteur"></app-film-acteur>
       </div>
-      <br>Productiebedrijf: {{film.productiebedrijf}}
-      <br><br><strong>Korte inhoud:</strong><br>{{film.korteInhoud}}
+      <br><b>Productiebedrijf: </b>{{film.productiebedrijf}}
+      <br><br><b>Korte inhoud: </b><br>{{film.korteInhoud}}
     </mat-list>
   </mat-card-content>
 </mat-card>
