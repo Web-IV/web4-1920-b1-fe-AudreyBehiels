@@ -1,28 +1,35 @@
 <mat-card>
-  <mat-card-header>
+  <!-- <mat-card-header>
     <mat-card-title style="font-weight: bold;">
       <mat-icon>movie</mat-icon> {{film.titel}}
     </mat-card-title>
-  </mat-card-header>
+  </mat-card-header> -->
+
   <mat-card-content>
-    <mat-list class="filmInfo">
-      <b>Jaar: </b>{{film.jaar | date:'yyyy'}}
-      <br><b>Duur: </b>{{film.duur}} minuten
-      <br><b>Genre: </b>
-      <div *ngFor="let genre of film.filmGenres" class="naamWeergave">
-        <app-film-genre [filmGenre]="genre"></app-film-genre>
-      </div>
-      <br><b>Regisseur: </b>{{film.regisseur}}
-      <br><b>Schrijvers: </b>
-      <div *ngFor="let schrijver of film.filmSchrijvers" class="naamWeergave">
-        <app-film-schrijver [filmSchrijver]="schrijver"></app-film-schrijver>
-      </div>
-      <br><b>Acteurs: </b>
-      <div *ngFor="let acteur of film.filmActeurs" class="naamWeergave">
-        <app-film-acteur [filmActeur]="acteur"></app-film-acteur>
-      </div>
-      <br><b>Productiebedrijf: </b>{{film.productiebedrijf}}
-      <br><br><b>Korte inhoud: </b><br>{{film.korteInhoud}}
-    </mat-list>
+    <!-- <div>
+      <mat-list class="filmInfo">
+        <b>Jaar: </b>{{film.jaar}}
+        <br><b>Duur: </b>{{film.duur}} minuten
+        <br><b>Genre: </b>
+        <div *ngFor="let genre of film.filmGenres" class="naamWeergave">
+          <app-film-genre [filmGenre]="genre"></app-film-genre>
+        </div>
+        <br><b>Regisseur: </b>{{film.regisseur}}
+        <br><b>Schrijvers: </b>
+        <div *ngFor="let schrijver of film.filmSchrijvers" class="naamWeergave">
+          <app-film-schrijver [filmSchrijver]="schrijver"></app-film-schrijver>
+        </div>
+        <br><b>Acteurs: </b>
+        <div *ngFor="let acteur of film.filmActeurs" class="naamWeergave">
+          <app-film-acteur [filmActeur]="acteur"></app-film-acteur>
+        </div>
+        <br><b>Productiebedrijf: </b>{{film.productiebedrijf}}
+        <br><br><b>Korte inhoud: </b><br>{{film.korteInhoud}}
+      </mat-list>
+    </div> -->
+ 
+    <div>
+      <img src="assets/images/{{film.titel}}.jpg" style="height: 20em;" class="poster">
+    </div>
   </mat-card-content>
 </mat-card>

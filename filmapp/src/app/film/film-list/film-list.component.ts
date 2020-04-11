@@ -26,6 +26,8 @@ public errorMessage: string ='';
     this.filterFilmTitel = filter;
   }
 
+
+
   /*get films() : Film[]{
     return this._films;
   }*/

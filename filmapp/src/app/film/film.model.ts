@@ -17,7 +17,7 @@ interface FilmJson {
 export class Film {
   constructor(
     private _titel: string,
-    private _jaar = new Date(),
+    private _jaar: string,
     private _duur: string,
     private _regisseur: string,
     private _filmGenres = new Array<FilmGenre>(),
@@ -30,7 +30,7 @@ export class Film {
   static fromJSON(json: FilmJson): Film {
     const film = new Film(
       json.titel,
-      new Date(json.jaar),
+      json.jaar,
       json.duur,
       json.regisseur,
       json.filmGenres.map(FilmGenre.fromJSON),
@@ -45,7 +45,7 @@ export class Film {
   get titel(): string {
     return this._titel;
   }
-  get jaar(): Date {
+  get jaar(): string {
     return this._jaar;
   }
   get duur(): string {
