@@ -1,12 +1,13 @@
-<mat-card>
-    <mat-card-header>
+<mat-card *ngIf="( film$ | async) as film" >
+  <div  >
+  <mat-card-header>
       <mat-card-title style="font-weight: bold;">
         <mat-icon>movie</mat-icon> {{film.titel}}
       </mat-card-title>
     </mat-card-header>
   
     <mat-card-content>
-      <div>
+      <div >
         <mat-list class="filmInfo">
           <b>Jaar: </b>{{film.jaar}}
           <br><b>Duur: </b>{{film.duur}} minuten
@@ -27,9 +28,13 @@
           <br><br><b>Korte inhoud: </b><br>{{film.korteInhoud}}
         </mat-list>
       </div>
+   
+
       <div>
         <img src="assets/images/{{film.titel}}.jpg" style="height: 20em;" class="poster">
       </div>
+      
     </mat-card-content>
+  </div>
   </mat-card>
   

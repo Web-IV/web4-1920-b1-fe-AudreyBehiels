@@ -27,9 +27,18 @@
         <br><br><b>Korte inhoud: </b><br>{{film.korteInhoud}}
       </mat-list>
     </div> -->
- 
+
     <div>
-      <img src="assets/images/{{film.titel}}.jpg" style="height: 20em;" class="poster">
+      <button (click)="detailsFilm(film.titel)" style="padding: 0; border: none;  background: none;">
+        <!-- <button [routerLink]="['film/detailFilm/',  film.titel]" style="padding: 0; border: none;  background: none;">  -->
+<!-- <a (click)="detailsFilm(film.titel)"> -->
+        <!-- <a [routerLink]="['film/detailFilm/',  film.titel]"> -->
+        <img src="assets/images/{{film.titel}}.jpg" style="height: 30em;" class="poster">
+  
+      <!-- </a>  -->
+      
+    </button>
     </div>
   </mat-card-content>
 </mat-card>
+

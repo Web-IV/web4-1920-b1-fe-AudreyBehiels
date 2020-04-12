@@ -8,7 +8,21 @@ import { HttpClientModule } from "@angular/common/http";
 import { FilmGenreComponent } from "./film-genre/film-genre.component";
 import { FilmSchrijverComponent } from "./film-schrijver/film-schrijver.component";
 import { FilmActeurComponent } from "./film-acteur/film-acteur.component";
-import { FilmdetailsComponent } from './filmdetails/filmdetails.component';
+import { FilmDetailComponent } from "./film-detail/film-detail.component";
+import { FilmResolver } from "./FilmResolver";
+import { RouterModule, Routes } from "@angular/router";
+
+const routes :Routes= [
+  {
+    path: "lijst",
+    component: FilmListComponent,
+  },
+  {
+    path: "detailFilm/:titel",
+    component: FilmDetailComponent, pathMatch:'full',
+    resolve: { film: FilmResolver },
+  },
+];
 
 @NgModule({
   declarations: [
@@ -18,9 +32,14 @@ import { FilmdetailsComponent } from './filmdetails/filmdetails.component';
     FilmGenreComponent,
     FilmSchrijverComponent,
     FilmActeurComponent,
-    FilmdetailsComponent,
+    FilmDetailComponent,
   ],
-  imports: [CommonModule, MaterialModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    HttpClientModule,
+    RouterModule.forChild(routes),
+  ],
   exports: [FilmListComponent],
 })
 export class FilmModule {}

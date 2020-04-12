@@ -27,7 +27,6 @@ public errorMessage: string ='';
   }
 
 
-
   /*get films() : Film[]{
     return this._films;
   }*/

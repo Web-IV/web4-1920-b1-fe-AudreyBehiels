@@ -1,8 +1,9 @@
-import { FilmGenreJson, FilmGenre } from './filmGenre.model';
-import { FilmSchrijver, FilmSchrijverJson } from './filmSchrijver.model';
-import { FilmActeur, FilmActeurJson } from './filmActeur.model';
+import { FilmGenreJson, FilmGenre } from "./filmGenre.model";
+import { FilmSchrijver, FilmSchrijverJson } from "./filmSchrijver.model";
+import { FilmActeur, FilmActeurJson } from "./filmActeur.model";
 
 interface FilmJson {
+  id: number;
   titel: string;
   jaar: string;
   duur: string;
@@ -15,6 +16,7 @@ interface FilmJson {
 }
 
 export class Film {
+  private _id: number;
   constructor(
     private _titel: string,
     private _jaar: string,
@@ -39,7 +41,11 @@ export class Film {
       json.productiebedrijf,
       json.korteInhoud
     );
+    film._id = json.id;
     return film;
+  }
+  get id(): number {
+    return this._id;
   }
 
   get titel(): string {
