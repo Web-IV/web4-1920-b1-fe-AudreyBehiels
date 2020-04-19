@@ -11,6 +11,7 @@ import { FilmActeurComponent } from "./film-acteur/film-acteur.component";
 import { FilmDetailComponent } from "./film-detail/film-detail.component";
 import { FilmResolver } from "./FilmResolver";
 import { RouterModule, Routes } from "@angular/router";
+import {MatSelectModule} from '@angular/material/select';
 
 const routes :Routes= [
   {
@@ -38,6 +39,7 @@ const routes :Routes= [
     CommonModule,
     MaterialModule,
     HttpClientModule,
+    MatSelectModule,
     RouterModule.forChild(routes),
   ],
   exports: [FilmListComponent],

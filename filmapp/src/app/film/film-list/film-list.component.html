@@ -1,5 +1,6 @@
 <div fxLayout="column" fxLayoutGap="2%">
-  <mat-card>
+  <div class="functies flex-row">
+  <mat-card class="card">
     <mat-form-field>
       <input matInput placeholder="Film titel" type="text" #filter />
     </mat-form-field>
@@ -7,6 +8,18 @@
       Zoek
     </button>
   </mat-card>
+
+  <mat-card class="card">
+    <mat-form-field>
+      <mat-label>Genre</mat-label>
+      <mat-select [(value)]="selected">
+        <mat-option *ngFor="let genre of (genres$ | async)" [value]="genre.value"  >
+        {{genre.naam}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card>
+  </div>
 
   <div *ngIf="(films$ | async) as films">
     <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="start">

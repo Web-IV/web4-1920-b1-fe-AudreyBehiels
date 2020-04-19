@@ -2,7 +2,7 @@
 
 .backgroundColor {
   background-color: rgb(168, 16, 16);
-  background-image: url(assets/images/operaGordijn.jpg) ;
+  background-image: url(assets/images/operaGordijn.jpg);
 }
 
 .naamWeergave {
@@ -12,6 +12,17 @@
 .filmInfo {
   font-size: 16px;
 }
-.poster{
-  
+
+.card {
+  background-color: transparent;
+  width: 15em;
+  margin: 0px;
+}
+
+.functies {
+  display: inline-block;
+  box-sizing: border-box;
+  display: flex;
+  width: fit-content;
+  background-color: white;
 }
