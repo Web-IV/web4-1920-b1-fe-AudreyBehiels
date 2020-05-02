@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutGap="2%">
+<div class="filmLijst" fxLayout="column" fxLayoutGap="2%">
   <div class="functies flex-row">
     <mat-card class="card">
       <mat-form-field>
@@ -33,28 +33,7 @@
 
   <div *ngIf="films$ | async as films">
     <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="start">
-      <div class="film" *ngFor="let localFilm of films$ | async | filmFilter: filterFilmTitel"
-        fxFlex="0 0 calc(35%-1.%)" fxFlex.xs="100%" style="padding-bottom: 10px;">
-        <!-- fxFlex="0 0 calc(33.3%-0.5%)" -->
-        <app-film [film]="localFilm"></app-film>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="films$ | async as films">
-    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="start">
-      <div class="film" *ngFor="let localFilm of films$ | async | filmGenreFilter: filterFilmGenre"
-        fxFlex="0 0 calc(35%-1.%)" fxFlex.xs="100%" style="padding-bottom: 10px;">
-        <!-- fxFlex="0 0 calc(33.3%-0.5%)" -->
-        <app-film [film]="localFilm"></app-film>
-      </div>
-    </div>
-  </div>
-
-
-  <div *ngIf="films$ | async as films">
-    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="start">
-      <div class="film" *ngFor="let localFilm of films$ | async | filmJaarFilter: filterFilmJaar"
+      <div class="film" *ngFor="let localFilm of films$ | async | filmFilter: filterFilmTitel |filmGenreFilter: filterFilmGenre | filmJaarFilter: filterFilmJaar"
         fxFlex="0 0 calc(35%-1.%)" fxFlex.xs="100%" style="padding-bottom: 10px;">
         <!-- fxFlex="0 0 calc(33.3%-0.5%)" -->
         <app-film [film]="localFilm"></app-film>
