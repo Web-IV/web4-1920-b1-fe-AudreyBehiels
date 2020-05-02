@@ -22,7 +22,6 @@ import { MatInputModule } from "@angular/material/input";
     MatSelectModule,
   ],
   exports: [
-    //BrowserAnimationsModule,
     FlexLayoutModule,
     MatListModule,
     MatCardModule,

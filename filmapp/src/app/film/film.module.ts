@@ -15,7 +15,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { FilmGenreFilterPipe } from "./film-genre-filter.pipe";
 import { FilmJaarFilterPipe } from './film-jaar-filter.pipe';
 
-const routes: Routes = [
+const routes:Routes = [
   {
     path: "lijst",
     component: FilmListComponent,

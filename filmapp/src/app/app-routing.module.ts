@@ -9,11 +9,10 @@ const appRoutes: Routes = [
   {
     path: "film",
     loadChildren: () =>
-      import("./film/film.module")
-      .then((mod) => mod.FilmModule),
-      data: {preload:true}
+      import("./film/film.module").then((mod) => mod.FilmModule),
+    data: { preload: true },
   },
-  
+
   { path: "", redirectTo: "film/lijst", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent },
 ];
@@ -21,10 +20,12 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-   CommonModule,
-    RouterModule.forRoot(appRoutes, 
-       {preloadingStrategy: PreloadAllModules},
-      /*{ enableTracing: true }*/)
+    CommonModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { preloadingStrategy: PreloadAllModules }
+      /*{ enableTracing: true }*/
+    ),
   ],
   exports: [RouterModule],
 })
