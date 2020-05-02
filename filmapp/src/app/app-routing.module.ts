@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-
 import { RouterModule, Routes, PreloadAllModules } from "@angular/router";
 import { FilmListComponent } from "./film/film-list/film-list.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";

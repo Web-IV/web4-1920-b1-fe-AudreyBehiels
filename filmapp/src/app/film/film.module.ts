@@ -12,6 +12,7 @@ import { FilmDetailComponent } from "./film-detail/film-detail.component";
 import { FilmResolver } from "./FilmResolver";
 import { RouterModule, Routes } from "@angular/router";
 import {MatSelectModule} from '@angular/material/select';
+import { FilmGenreFilterPipe } from './film-genre-filter.pipe';
 
 const routes :Routes= [
   {
@@ -34,13 +35,14 @@ const routes :Routes= [
     FilmSchrijverComponent,
     FilmActeurComponent,
     FilmDetailComponent,
+    FilmGenreFilterPipe,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     HttpClientModule,
     MatSelectModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes)
   ],
   exports: [FilmListComponent],
 })

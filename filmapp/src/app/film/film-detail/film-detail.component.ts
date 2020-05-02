@@ -15,10 +15,7 @@ export class FilmDetailComponent implements OnInit {
   private _fetchFilm$: Observable<Film>;
 
   public errorMessage: string = "";
-  constructor(
-    private route: ActivatedRoute,
-    private _filmDataService: FilmDataService
-  ) {}
+  constructor( private route: ActivatedRoute, private _filmDataService: FilmDataService ) {}
 
   get film$(): Observable<Film> {
     return this._fetchFilm$;

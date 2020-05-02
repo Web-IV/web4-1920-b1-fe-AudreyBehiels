@@ -12,11 +12,10 @@ export class FilmDataService {
   // private _films = FILMS;
   private _film$: Observable<Film>;
   private _filmsByGenre$: Observable<Film[]>;
-
+  public _genre: string;
   constructor(private http: HttpClient) {}
 
   get films$(): Observable<Film[]> {
-    //return this._films;
     return this.http.get(`${environment.apiUrl}/films/`).pipe(
       tap(console.log),
       catchError(this.handleError),
@@ -35,9 +34,17 @@ export class FilmDataService {
   get film$(): Observable<Film> {
     return this._film$;
   }
-   get filmsbyGenre$(): Observable<Film[]>{
-    return this._filmsByGenre$;
-   } 
+
+  get filmsbyGenre$(): Observable<Film[]> {
+    //return this._filmsByGenre$;
+    return this.http
+      .get(`${environment.apiUrl}/films/getfilmsbygenre/${this._genre}`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError),
+        map((list: any[]): Film[] => list.map(Film.fromJSON))
+      );
+  }
 
   detailsFilm$(titel: string): Observable<Film> {
     this._film$ = this.http
@@ -46,12 +53,15 @@ export class FilmDataService {
     return this._film$;
   }
 
-   filmsByGenre$(genre: string): Observable<Film[]>{
-   this._filmsByGenre$= this.http.get(`${environment.apiUrl}/films/getfilmsbygenre/${genre}`).pipe(
-      tap(console.log),
-      catchError(this.handleError),
-      map((list: any[]): Film[] => list.map(Film.fromJSON))
-    );
+  filmsByGenre$(genre: string): Observable<Film[]> {
+    this._genre = genre;
+    this._filmsByGenre$ = this.http
+      .get(`${environment.apiUrl}/films/getfilmsbygenre/${genre}`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError),
+        map((list: any[]): Film[] => list.map(Film.fromJSON))
+      );
     return this._filmsByGenre$;
   }
 

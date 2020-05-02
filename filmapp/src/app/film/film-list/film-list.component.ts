@@ -5,6 +5,7 @@ import { Observable, EMPTY } from "rxjs";
 import { Film } from "../film.model";
 import { catchError } from "rxjs/operators";
 import { Genre } from "../genre.model";
+import { FilmGenre } from "../filmGenre.model";
 
 @Component({
   selector: "app-film-list",
@@ -13,23 +14,23 @@ import { Genre } from "../genre.model";
 })
 export class FilmListComponent implements OnInit {
   public filterFilmTitel: string;
-  //private _films : Films[];
+  public filterFilmGenre: string;
   private _fetchFilms$: Observable<Film[]>;
   private _fetchFilmsGenre$: Observable<Film[]>;
   private _fetchGenres$: Observable<Genre[]>;
-  public errorMessage: string = "";
-  public selected : String;
+  public errorMessage: string;
+  public selected: string;
 
-  constructor(private _filmDataService: FilmDataService) {
-    /*this._filmDataService.films$.subscibe(
-  film => this._films = film
-  );*/
-  }
+  constructor(private _filmDataService: FilmDataService) {}
 
   applyFilter(filter: string) {
     this.filterFilmTitel = filter;
   }
 
+  filterGenre(genre: string) {
+    this.filterFilmGenre = genre;
+    this._filmDataService._genre = genre;
+  }
   /*get films() : Film[]{
     return this._films;
   }*/
@@ -42,7 +43,6 @@ export class FilmListComponent implements OnInit {
     return this._fetchFilmsGenre$;
   }
   get films$(): Observable<Film[]> {
-    // return this._filmDataService.films$;
     return this._fetchFilms$;
   }
   ngOnInit(): void {
@@ -52,13 +52,13 @@ export class FilmListComponent implements OnInit {
         return EMPTY;
       })
     )),
-      (this._fetchGenres$ = this._filmDataService.genres$.pipe(
+      (this._fetchFilmsGenre$ = this._filmDataService.filmsbyGenre$.pipe(
         catchError((err) => {
           this.errorMessage = err;
           return EMPTY;
         })
       )),
-      (this._fetchFilmsGenre$= this._filmDataService.filmsbyGenre$.pipe(
+      (this._fetchGenres$ = this._filmDataService.genres$.pipe(
         catchError((err) => {
           this.errorMessage = err;
           return EMPTY;
