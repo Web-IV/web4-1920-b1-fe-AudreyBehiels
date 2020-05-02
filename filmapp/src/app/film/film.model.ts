@@ -5,7 +5,7 @@ import { FilmActeur, FilmActeurJson } from "./filmActeur.model";
 interface FilmJson {
   id: number;
   titel: string;
-  jaar: string;
+  jaar: number;
   duur: string;
   regisseur: string;
   filmGenres: FilmGenreJson[];
@@ -19,7 +19,7 @@ export class Film {
   private _id: number;
   constructor(
     private _titel: string,
-    private _jaar: string,
+    private _jaar: number,
     private _duur: string,
     private _regisseur: string,
     private _filmGenres = new Array<FilmGenre>(),
@@ -51,7 +51,7 @@ export class Film {
   get titel(): string {
     return this._titel;
   }
-  get jaar(): string {
+  get jaar(): number {
     return this._jaar;
   }
   get duur(): string {

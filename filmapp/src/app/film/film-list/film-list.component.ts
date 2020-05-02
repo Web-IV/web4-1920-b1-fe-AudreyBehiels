@@ -5,7 +5,6 @@ import { Observable, EMPTY } from "rxjs";
 import { Film } from "../film.model";
 import { catchError } from "rxjs/operators";
 import { Genre } from "../genre.model";
-import { FilmGenre } from "../filmGenre.model";
 
 @Component({
   selector: "app-film-list",
@@ -15,6 +14,7 @@ import { FilmGenre } from "../filmGenre.model";
 export class FilmListComponent implements OnInit {
   public filterFilmTitel: string;
   public filterFilmGenre: string;
+  public filterFilmJaar: number;
   private _fetchFilms$: Observable<Film[]>;
   private _fetchFilmsGenre$: Observable<Film[]>;
   private _fetchGenres$: Observable<Genre[]>;
@@ -30,6 +30,9 @@ export class FilmListComponent implements OnInit {
   filterGenre(genre: string) {
     this.filterFilmGenre = genre;
     this._filmDataService._genre = genre;
+  }
+  applyJaarFilter(jaar: number) {
+    this.filterFilmJaar = jaar;
   }
   /*get films() : Film[]{
     return this._films;

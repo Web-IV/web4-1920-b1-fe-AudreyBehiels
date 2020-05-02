@@ -11,17 +11,19 @@ import { FilmActeurComponent } from "./film-acteur/film-acteur.component";
 import { FilmDetailComponent } from "./film-detail/film-detail.component";
 import { FilmResolver } from "./FilmResolver";
 import { RouterModule, Routes } from "@angular/router";
-import {MatSelectModule} from '@angular/material/select';
-import { FilmGenreFilterPipe } from './film-genre-filter.pipe';
+import { MatSelectModule } from "@angular/material/select";
+import { FilmGenreFilterPipe } from "./film-genre-filter.pipe";
+import { FilmJaarFilterPipe } from './film-jaar-filter.pipe';
 
-const routes :Routes= [
+const routes: Routes = [
   {
     path: "lijst",
     component: FilmListComponent,
   },
   {
     path: "detailFilm/:titel",
-    component: FilmDetailComponent, pathMatch:'full',
+    component: FilmDetailComponent,
+    pathMatch: "full",
     resolve: { film: FilmResolver },
   },
 ];
@@ -36,13 +38,14 @@ const routes :Routes= [
     FilmActeurComponent,
     FilmDetailComponent,
     FilmGenreFilterPipe,
+    FilmJaarFilterPipe,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     HttpClientModule,
     MatSelectModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
   exports: [FilmListComponent],
 })
