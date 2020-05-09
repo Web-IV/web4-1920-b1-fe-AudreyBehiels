@@ -14,11 +14,16 @@
 }
 
 .mat-toolbar {
+  font-weight: bold;
+}
+
+
+
+.header {
   background: rgb(168, 16, 16);
   color: white;
   font-weight: bold;
   text-transform: uppercase;
-
 }
 
 .filmLijst {
