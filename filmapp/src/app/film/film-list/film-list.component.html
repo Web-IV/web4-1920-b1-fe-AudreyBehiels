@@ -2,17 +2,18 @@
   <div class="functies flex-row">
     <mat-card class="card">
       <mat-form-field>
-        <input matInput placeholder="Film titel" type="text" #filter />
+        <input matInput (keyup)="filterFilm$.next($event.target.value)" placeholder="Film titel" type="text" #filter
+          data-cy="filterFilmTitelInput" />
       </mat-form-field>
-      <button (click)="applyFilter(filter.value)" mat-raised-button>
+      <!-- <button (click)="applyFilter(filter.value)" mat-raised-button>
         Zoek
-      </button>
+      </button>-->
     </mat-card>
 
     <mat-card class="card">
       <mat-form-field>
         <mat-label>Genre</mat-label>
-        <mat-select [(value)]="selected" (selectionChange)="filterGenre(selected)">
+        <mat-select [(value)]="selected" (selectionChange)="filterGenre(selected)" data-cy="filterFilmGenreInput" class="formGenre">
           <mat-option *ngFor="let genre of genres$ | async" [value]="genre.naam">
             {{ genre.naam }}
           </mat-option>
@@ -22,29 +23,32 @@
     </mat-card>
 
     <mat-card class="card">
-      <mat-form-field>
-        <input matInput placeholder="jaar van film" type="number" #filterJaar />
+      <mat-form-field >
+        <input matInput  placeholder="jaar van film" type="number" data-cy="filterFilmJaarInput"
+          #filterJaar  /> <!--data-cy="filterFilmJaarInput" (keyup)="filterFilmJaar$.next($event.target.value)"-->
       </mat-form-field>
-      <button (click)="applyJaarFilter(filterJaar.value)" mat-raised-button>
+      <button class="formJaar" (click)="applyJaarFilter(filterJaar.value)" mat-raised-button>
         Zoek
-      </button>
+      </button> 
     </mat-card>
   </div>
 
+  <mat-card class="error" *ngIf="errorMessage" data-cy="appError">
+    Error bij het laden van de film lijst: {{ errorMessage }}. <br />
+    Probeer later opnieuw.
+  </mat-card>
+
   <div *ngIf="films$ | async as films">
     <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="start">
-      <div class="film" *ngFor="let localFilm of films$ | async | filmFilter: filterFilmTitel |filmGenreFilter: filterFilmGenre | filmJaarFilter: filterFilmJaar"
+      <div class="film"
+        *ngFor="let localFilm of films$ | async | filmFilter: filterFilmTitel |filmGenreFilter: filterFilmGenre | filmJaarFilter: filterFilmJaar"
         fxFlex="0 0 calc(35%-1.%)" fxFlex.xs="100%" style="padding-bottom: 10px;">
         <!-- fxFlex="0 0 calc(33.3%-0.5%)" -->
-        <app-film [film]="localFilm"></app-film>
+        <app-film [film]="localFilm" data-cy="filmCard"></app-film>
       </div>
     </div>
   </div>
 
   <ng-template #loadingOrError>
-    <mat-card class="error" *ngIf="errorMessage">
-      Error loading the recipe list: {{ errorMessage }}. <br />
-      Please try again later.
-    </mat-card>
   </ng-template>
 </div>

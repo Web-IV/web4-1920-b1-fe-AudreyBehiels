@@ -1,9 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { FILMS } from "../mock-films";
 import { FilmDataService } from "../film-data.service";
-import { Observable, EMPTY } from "rxjs";
+import { Observable, EMPTY, Subject, pipe } from "rxjs";
 import { Film } from "../film.model";
-import { catchError } from "rxjs/operators";
+import {
+  catchError,
+  distinctUntilChanged,
+  debounceTime,
+  map,
+} from "rxjs/operators";
 import { Genre } from "../genre.model";
 
 @Component({
@@ -20,8 +25,28 @@ export class FilmListComponent implements OnInit {
   private _fetchGenres$: Observable<Genre[]>;
   public errorMessage: string;
   public selected: string;
+  public filterFilm$ = new Subject<String>();
+//  public filterFilmJaar$ = new Subject<Number>();
 
-  constructor(private _filmDataService: FilmDataService) {}
+  constructor(private _filmDataService: FilmDataService) {
+    /*this.filterFilmJaar$
+    .pipe(
+      distinctUntilChanged(),
+      debounceTime(400),
+      map((val) => val)
+    )
+    .subscribe((val) => this.filterFilmJaar == val);*/
+
+    this.filterFilm$
+      .pipe(
+        distinctUntilChanged(),
+        debounceTime(400),
+        map((val) => val.toLowerCase())
+      )
+      .subscribe((val) => (this.filterFilmTitel = val));
+
+    
+  }
 
   applyFilter(filter: string) {
     this.filterFilmTitel = filter;

@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Film } from "../film.model";
 import { FilmDataService } from "../film-data.service";
-import { Router } from '@angular/router';
-import { CombineLatestSubscriber } from 'rxjs/internal/observable/combineLatest';
-import { FilmDetailComponent } from '../film-detail/film-detail.component';
+import { Router } from "@angular/router";
+import { CombineLatestSubscriber } from "rxjs/internal/observable/combineLatest";
+import { FilmDetailComponent } from "../film-detail/film-detail.component";
 
 @Component({
   selector: "app-film",
@@ -13,18 +13,18 @@ import { FilmDetailComponent } from '../film-detail/film-detail.component';
 export class FilmComponent implements OnInit {
   @Input() public film: Film;
 
-  constructor(private _filmDataService: FilmDataService, 
-    private router : Router) {}
+  constructor(
+    private _filmDataService: FilmDataService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.router
+    this.router;
   }
 
-  detailsFilm(titel : string) {
-    console.log('geklikt, ' + titel);
-  this.router.navigate(['film/detailFilm/',  titel]);
-     this._filmDataService.detailsFilm$(titel);
-
+  detailsFilm(titel: string) {
+    console.log("geklikt, " + titel);
+    this.router.navigate(["films/detailFilm/", titel]);
+    this._filmDataService.detailsFilm$(titel);
   }
-  
 }

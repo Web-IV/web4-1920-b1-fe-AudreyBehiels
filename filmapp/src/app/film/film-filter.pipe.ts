@@ -8,8 +8,8 @@ export class FilmFilterPipe implements PipeTransform {
     if (!titel || titel.length === 0) {
       return films;
     }
-    return films.filter(
-      (film) => film.titel.toLowerCase() == titel.toLowerCase()
+    return films.filter((film) =>
+      film.titel.toLowerCase().startsWith(titel.toLowerCase())
     );
   }
 }

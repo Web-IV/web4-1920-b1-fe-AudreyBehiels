@@ -7,13 +7,13 @@ import { FilmDetailComponent } from "./film/film-detail/film-detail.component";
 
 const appRoutes: Routes = [
   {
-    path: "film",
+    path: "films",
     loadChildren: () =>
       import("./film/film.module").then((mod) => mod.FilmModule),
     data: { preload: true },
   },
 
-  { path: "", redirectTo: "film/lijst", pathMatch: "full" },
+  { path: "", redirectTo: "films/lijst", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent },
 ];
 
