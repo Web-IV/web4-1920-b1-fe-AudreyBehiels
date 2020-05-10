@@ -1,4 +1,22 @@
 describe('Mijn Testen', function () {
+
+  it('login', function () {
+    cy.visit({
+     url: '/account'});
+     cy.request('POST', '/login', {
+      
+        username: "audrey.behiels@gmail.com",
+        password:"P@ssword1111"
+     
+  });
+    /*  methode:'POST',
+    body:{
+      username: "audrey.behiels@gmail.com",
+      password:"P@ssword1111"
+    }*/
+  
+  });
+
   it('Mijn app runt', function () {
     cy.visit('');
     cy.get('[data-cy=filmCard]').should('have.length', 11);

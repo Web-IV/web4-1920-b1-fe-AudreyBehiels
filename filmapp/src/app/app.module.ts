@@ -16,7 +16,8 @@ import { MatListModule } from "@angular/material/list";
 import { AppRoutingModule } from "./app-routing.module";
 import { GenreComponent } from "./genre/genre.component";
 import { MainNavComponent } from "./main-nav/main-nav.component";
-import { UserModule } from './user/user.module';
+import { UserModule } from "./user/user.module";
+import { httpInterceptorProviders } from "./interceptors";
 
 @NgModule({
   declarations: [
@@ -36,12 +37,13 @@ import { UserModule } from './user/user.module';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    UserModule,
     AppRoutingModule,
     CommonModule,
     MatSelectModule,
-    UserModule,
   ],
   exports: [BrowserAnimationsModule],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

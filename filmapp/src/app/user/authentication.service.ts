@@ -16,9 +16,11 @@ function parseJwt(token) {
 @Injectable({
   providedIn: "root",
 })
+
 export class AuthenticationService {
   private readonly _tokenKey = "currentUser";
   private _user$: BehaviorSubject<string>;
+  public redirectUrl: string = null;
 
   constructor(private http: HttpClient) {
     let parsedToken = parseJwt(localStorage.getItem(this._tokenKey));
@@ -44,11 +46,11 @@ export class AuthenticationService {
     return !!localToken ? localToken : "";
   }
 
-  login(email: string, password: string): Observable<boolean> {
+  login(email: string, wachtwoord: string): Observable<boolean> {
     return this.http
       .post(
         `${environment.apiUrl}/account`,
-        { email, password },
+        { email, wachtwoord },
         { responseType: "text" }
       )
       .pipe(
@@ -68,17 +70,17 @@ export class AuthenticationService {
     firstname: string,
     lastname: string,
     email: string,
-    password: string
+    wachtwoord: string
   ): Observable<boolean> {
     return this.http
       .post(
-        `${environment.apiUrl}/account/register`,
+        `${environment.apiUrl}/account/registreer`,
         {
           firstname,
           lastname,
           email,
-          password,
-          passwordConfirmation: password,
+          wachtwoord,
+          wachtwoordConfirmation: wachtwoord,
         },
         { responseType: "text" }
       )
@@ -101,6 +103,7 @@ export class AuthenticationService {
       this._user$.next(null);
     }
   }
+
   checkUserNameAvailability = (email: string): Observable<boolean> => {
     return this.http.get<boolean>(
       `${environment.apiUrl}/account/checkusername`,

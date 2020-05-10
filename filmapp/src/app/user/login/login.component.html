@@ -1,1 +1,53 @@
-<p>login works!</p>
+<div
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  class="login-main"
+  style="background-color: rgb(168, 16, 16);"
+>
+  <mat-card class="loginCard">
+    <form [formGroup]="user" (ngSubmit)="onSubmit()">
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content fxLayout="column" style="font-size: 20px;">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="email"
+            aria-label="mailadres"
+            data-cy="login-email"
+            formControlName="mailadres"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            type="password"
+            matInput
+            placeholder="password"
+            aria-label="wachtwoord"
+            data-cy="login-password"
+            formControlName="wachtwoord"
+          />
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
+        <a [routerLink]="['registreer']" style="font-size: 18px;">Registreer</a>
+
+        <button
+          mat-raised-button
+          type="submit"
+          color="primary"
+          data-cy="login-button"
+          style="font-size: 18px;"
+        >
+          Login
+        </button>
+      </mat-card-actions>
+    </form>
+    <mat-card class="error" *ngIf="errorMessage" data-cy="appError">
+      got an error while loading the film list: {{ errorMessage }}
+    </mat-card>
+  </mat-card>
+</div>

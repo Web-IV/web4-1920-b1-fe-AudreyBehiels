@@ -43,3 +43,11 @@
   display: flex;
   width: fit-content;
 }
+
+.loginCard {
+  width: 20vw;
+}
+
+.registerCard {
+  width: 25vw;
+}
