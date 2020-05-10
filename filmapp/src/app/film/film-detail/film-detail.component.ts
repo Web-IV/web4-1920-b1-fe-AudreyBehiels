@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { FilmDataService } from "../film-data.service";
 import { Observable, EMPTY } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { AuthenticationService } from 'src/app/user/authentication.service';
 
 @Component({
   selector: "app-film-detail",
@@ -15,12 +16,12 @@ export class FilmDetailComponent implements OnInit {
   private _fetchFilm$: Observable<Film>;
 
   public errorMessage: string = "";
-  constructor( private route: ActivatedRoute, private _filmDataService: FilmDataService ) {}
+  constructor( private route: ActivatedRoute, private _filmDataService: FilmDataService) {}
 
   get film$(): Observable<Film> {
     return this._fetchFilm$;
   }
-
+  
   ngOnInit() {
     this.route.data.subscribe((item) => (this.film = item["film"]));
     this._fetchFilm$ = this._filmDataService.film$.pipe(
@@ -30,10 +31,13 @@ export class FilmDetailComponent implements OnInit {
       })
     );
     
+  }
+
+    
 
     /*this.route.paramMap.subscribe(pa=> 
     this.filmDataService.detailsFilm(pa.get('titel'))
     .subscribe(item => (this.film = item)))
     */
-  }
+  
 }

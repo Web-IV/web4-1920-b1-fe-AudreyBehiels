@@ -15,6 +15,7 @@ export class FilmDataService {
   public _genre: string;
   constructor(private http: HttpClient) {}
 
+
   get films$(): Observable<Film[]> {
     return this.http.get(`${environment.apiUrl}/films/`).pipe(
       tap(console.log),

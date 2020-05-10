@@ -20,6 +20,7 @@ export class AuthenticationService {
   private readonly _tokenKey = "currentUser";
   private _user$: BehaviorSubject<string>;
   public redirectUrl: string = null;
+  public isLoggedIn: boolean = false;
 
   constructor(private http: HttpClient) {
     let parsedToken = parseJwt(localStorage.getItem(this._tokenKey));
@@ -57,6 +58,7 @@ export class AuthenticationService {
           if (token) {
             localStorage.setItem(this._tokenKey, token);
             this._user$.next(mailadres);
+            this.isLoggedIn = true;
             return true;
           } else {
             return false;
@@ -73,13 +75,13 @@ export class AuthenticationService {
   ): Observable<boolean> {
     return this.http
       .post(
-        `${environment.apiUrl}/account/registreer`,
+        `${environment.apiUrl}/Account/registreer`,
         {
-          firstname: voornaam,
-          lastname: familienaam,
+          voornaam,
+          familienaam,
           mailadres,
           wachtwoord,
-          passwordConfirmation: wachtwoord,
+          wachtwoordBevestiging: wachtwoord,
         },
         { responseType: "text" }
       )
@@ -88,6 +90,7 @@ export class AuthenticationService {
           if (token) {
             localStorage.setItem(this._tokenKey, token);
             this._user$.next(mailadres);
+            this.isLoggedIn = true;
             return true;
           } else {
             return false;
@@ -100,6 +103,7 @@ export class AuthenticationService {
     if (this.user$.getValue()) {
       localStorage.removeItem("currentUser");
       this._user$.next(null);
+      this.isLoggedIn = false;
     }
   }
 

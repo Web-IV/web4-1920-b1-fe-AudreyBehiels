@@ -98,7 +98,7 @@ export class RegisterComponent implements OnInit {
       .registreer(
         this.user.value.firstname,
         this.user.value.lastname,
-        this.user.value.mail,
+        this.user.value.email,
         this.user.value.passwordGroup.password
       )
       .subscribe(
@@ -108,7 +108,7 @@ export class RegisterComponent implements OnInit {
               this.router.navigateByUrl(this.authService.redirectUrl);
               this.authService.redirectUrl = undefined;
             } else {
-              this.router.navigate(["/film/list"]);
+              this.router.navigate(["/film/lijst"]);
             }
           } else {
             this.errorMessage = `Could not register`;

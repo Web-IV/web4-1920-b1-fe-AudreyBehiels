@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
     });
   }
   onSubmit() {
-    console.log("gedrukt");
     this.authService
       .login(this.user.value.mailadres, this.user.value.wachtwoord)
       .subscribe(
@@ -49,7 +48,7 @@ export class LoginComponent implements OnInit {
               this.router.navigateByUrl(this.authService.redirectUrl);
               this.authService.redirectUrl = undefined;
             } else {
-            this.router.navigate(["/films/list"]);
+              this.router.navigate(["/films/lijst"]);
             }
           } else {
             this.errorMessage = `Could not login`;

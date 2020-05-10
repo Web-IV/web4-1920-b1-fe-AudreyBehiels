@@ -1,40 +1,55 @@
-<mat-card *ngIf="( film$ | async) as film" >
-  <div  >
-  <mat-card-header>
+<mat-card *ngIf="film$ | async as film" style="margin-left: 1vw;">
+  <div>
+    <mat-card-header>
       <mat-card-title style="font-weight: bold;">
-        <mat-icon>movie</mat-icon> {{film.titel}}
+        <mat-icon>movie</mat-icon> {{ film.titel }}
       </mat-card-title>
     </mat-card-header>
-  
-    <mat-card-content>
-      <div >
-        <mat-list class="filmInfo">
-          <b>Jaar: </b>{{film.jaar}}
-          <br><b>Duur: </b>{{film.duur}} minuten
-          <br><b>Genre: </b>
-          <div *ngFor="let genre of film.filmGenres" class="naamWeergave">
-            <app-film-genre [filmGenre]="genre"></app-film-genre>
-          </div>
-          <br><b>Regisseur: </b>{{film.regisseur}}
-          <br><b>Schrijvers: </b>
-          <div *ngFor="let schrijver of film.filmSchrijvers" class="naamWeergave">
-            <app-film-schrijver [filmSchrijver]="schrijver"></app-film-schrijver>
-          </div>
-          <br><b>Acteurs: </b>
-          <div *ngFor="let acteur of film.filmActeurs" class="naamWeergave">
-            <app-film-acteur [filmActeur]="acteur"></app-film-acteur>
-          </div>
-          <br><b>Productiebedrijf: </b>{{film.productiebedrijf}}
-          <br><br><b>Korte inhoud: </b><br>{{film.korteInhoud}}
-        </mat-list>
-      </div>
-   
 
-      <div>
-        <img src="assets/images/{{film.titel}}.jpg" style="height: 20em;" class="poster">
-      </div>
-      
+    <mat-card-content>
+      <tr>
+        <td style="width: 700px;">
+          <div>
+            <mat-list class="filmInfo">
+              <b>Jaar: </b>{{ film.jaar }} <br /><b>Duur: </b
+              >{{ film.duur }} minuten <br /><b>Genre: </b>
+              <div *ngFor="let genre of film.filmGenres" class="naamWeergave">
+                <app-film-genre [filmGenre]="genre"></app-film-genre>
+              </div>
+              <br /><b>Regisseur: </b>{{ film.regisseur }} <br /><b
+                >Schrijvers:
+              </b>
+              <div
+                *ngFor="let schrijver of film.filmSchrijvers"
+                class="naamWeergave"
+              >
+                <app-film-schrijver
+                  [filmSchrijver]="schrijver"
+                ></app-film-schrijver>
+              </div>
+              <br /><b>Acteurs: </b>
+              <div *ngFor="let acteur of film.filmActeurs" class="naamWeergave">
+                <app-film-acteur [filmActeur]="acteur"></app-film-acteur>
+              </div>
+              <br /><b>Productiebedrijf: </b>{{ film.productiebedrijf }}
+              <br /><br /><b>Korte inhoud: </b><br />{{ film.korteInhoud }}
+
+              <!-- <div *ngIf="isLoggedIn()"></div>-->
+            </mat-list>
+          </div>
+        </td>
+        <td style="width: 100px;"></td>
+        <td >
+          <div>
+            <br />
+            <img
+              src="assets/images/{{ film.titel }}.jpg"
+              style="height: 40em;"
+              class="poster"
+            />
+          </div>
+        </td>
+      </tr>
     </mat-card-content>
   </div>
-  </mat-card>
-  
+</mat-card>
