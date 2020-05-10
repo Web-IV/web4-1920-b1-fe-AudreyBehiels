@@ -16,7 +16,6 @@ function parseJwt(token) {
 @Injectable({
   providedIn: "root",
 })
-
 export class AuthenticationService {
   private readonly _tokenKey = "currentUser";
   private _user$: BehaviorSubject<string>;
@@ -46,18 +45,18 @@ export class AuthenticationService {
     return !!localToken ? localToken : "";
   }
 
-  login(email: string, wachtwoord: string): Observable<boolean> {
+  login(mailadres: string, wachtwoord: string): Observable<boolean> {
     return this.http
       .post(
         `${environment.apiUrl}/account`,
-        { email, wachtwoord },
+        { mailadres, wachtwoord },
         { responseType: "text" }
       )
       .pipe(
         map((token: any) => {
           if (token) {
             localStorage.setItem(this._tokenKey, token);
-            this._user$.next(email);
+            this._user$.next(mailadres);
             return true;
           } else {
             return false;
@@ -66,21 +65,21 @@ export class AuthenticationService {
       );
   }
 
-  register(
-    firstname: string,
-    lastname: string,
-    email: string,
+  registreer(
+    voornaam: string,
+    familienaam: string,
+    mailadres: string,
     wachtwoord: string
   ): Observable<boolean> {
     return this.http
       .post(
         `${environment.apiUrl}/account/registreer`,
         {
-          firstname,
-          lastname,
-          email,
+          firstname: voornaam,
+          lastname: familienaam,
+          mailadres,
           wachtwoord,
-          wachtwoordConfirmation: wachtwoord,
+          passwordConfirmation: wachtwoord,
         },
         { responseType: "text" }
       )
@@ -88,7 +87,7 @@ export class AuthenticationService {
         map((token: any) => {
           if (token) {
             localStorage.setItem(this._tokenKey, token);
-            this._user$.next(email);
+            this._user$.next(mailadres);
             return true;
           } else {
             return false;

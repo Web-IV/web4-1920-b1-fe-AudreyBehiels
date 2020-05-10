@@ -95,7 +95,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.authService
-      .register(
+      .registreer(
         this.user.value.firstname,
         this.user.value.lastname,
         this.user.value.mail,
