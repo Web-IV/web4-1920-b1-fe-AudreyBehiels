@@ -13,6 +13,7 @@ interface FilmJson {
   filmActeurs: FilmActeurJson[];
   productiebedrijf: string;
   korteInhoud: string;
+  aantalDuimenOmhoog: number;
 }
 
 export class Film {
@@ -26,7 +27,8 @@ export class Film {
     private _filmSchrijvers = new Array<FilmSchrijver>(),
     private _filmActeurs = new Array<FilmActeur>(),
     private _productiebedrijf: string,
-    private _korteInhoud: string
+    private _korteInhoud: string,
+    private _aantalDuimenOmhoog: number
   ) {}
 
   static fromJSON(json: FilmJson): Film {
@@ -39,7 +41,8 @@ export class Film {
       json.filmSchrijvers.map(FilmSchrijver.fromJSON),
       json.filmActeurs.map(FilmActeur.fromJSON),
       json.productiebedrijf,
-      json.korteInhoud
+      json.korteInhoud,
+      json.aantalDuimenOmhoog
     );
     film._id = json.id;
     return film;
@@ -74,5 +77,8 @@ export class Film {
   }
   get korteInhoud(): string {
     return this._korteInhoud;
+  }
+  get aantalDuimenOmhoog(): number {
+    return this._aantalDuimenOmhoog;
   }
 }
