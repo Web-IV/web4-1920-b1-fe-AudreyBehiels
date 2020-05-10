@@ -3,7 +3,7 @@ import { Film } from "./film.model";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { map, catchError, tap } from "rxjs/operators";
-import { Observable, pipe, EMPTY, throwError } from "rxjs";
+import { Observable, pipe, EMPTY, throwError, BehaviorSubject } from "rxjs";
 import { Genre } from "./genre.model";
 @Injectable({
   providedIn: "root",
@@ -13,6 +13,8 @@ export class FilmDataService {
   private _film$: Observable<Film>;
   private _filmsByGenre$: Observable<Film[]>;
   public _genre: string;
+  private _reloadFilms$ = new BehaviorSubject<boolean>(true);
+
   constructor(private http: HttpClient) {}
 
 
@@ -64,6 +66,14 @@ export class FilmDataService {
         map((list: any[]): Film[] => list.map(Film.fromJSON))
       );
     return this._filmsByGenre$;
+  }
+
+  verwijderFilm(film: Film){
+    return this.http.delete(`${environment.apiUrl}/films/deleteFilm/${film.titel}`)
+    .pipe(tap(console.log), catchError(this.handleError))
+      .subscribe(() => {
+        this._reloadFilms$.next(true);
+      });
   }
 
   handleError(err: any): Observable<never> {

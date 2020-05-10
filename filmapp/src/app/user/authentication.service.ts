@@ -16,11 +16,13 @@ function parseJwt(token) {
 @Injectable({
   providedIn: "root",
 })
+
 export class AuthenticationService {
   private readonly _tokenKey = "currentUser";
   private _user$: BehaviorSubject<string>;
   public redirectUrl: string = null;
   public isLoggedIn: boolean = false;
+  private _gebruikerRole : BehaviorSubject<String>;
 
   constructor(private http: HttpClient) {
     let parsedToken = parseJwt(localStorage.getItem(this._tokenKey));
@@ -35,7 +37,7 @@ export class AuthenticationService {
     this._user$ = new BehaviorSubject<string>(
       parsedToken && parsedToken.unique_name
     );
-  }
+    }
 
   get user$(): BehaviorSubject<string> {
     return this._user$;
@@ -65,6 +67,7 @@ export class AuthenticationService {
           }
         })
       );
+  
   }
 
   registreer(

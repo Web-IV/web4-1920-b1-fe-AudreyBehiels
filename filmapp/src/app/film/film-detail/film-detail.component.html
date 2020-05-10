@@ -37,9 +37,24 @@
               <!-- <div *ngIf="isLoggedIn()"></div>-->
             </mat-list>
           </div>
+          <div *ngIf="isUserLoggedIn()">
+            <button (click)="verwijderFilm()"  >
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+            <button (click)="upvote()" >
+              <span class="material-icons">
+                thumb_up
+              </span>
+            </button>
+            <button (click)="downvote()" >
+              <span class="material-icons">
+                thumb_down
+              </span>
+            </button>
+          </div>
         </td>
         <td style="width: 100px;"></td>
-        <td >
+        <td>
           <div>
             <br />
             <img
