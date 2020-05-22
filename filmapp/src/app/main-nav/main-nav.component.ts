@@ -34,6 +34,7 @@ export class MainNavComponent {
     this._router.navigate(["/account"]);
   }
 
+
   isLoggedIn() {
     return this._authenticationService.isLoggedIn;
   }

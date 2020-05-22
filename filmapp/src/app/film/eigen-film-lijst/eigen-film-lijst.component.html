@@ -1,0 +1,29 @@
+<div class="filmLijst" fxLayout="column" fxLayoutGap="2%">
+  <H1 style="color: white;">Mijn eigen filmlijst </H1>
+  <mat-card class="error" *ngIf="errorMessage" data-cy="appError">
+    Error bij het laden van de film lijst: {{ errorMessage }}. <br />
+    Probeer later opnieuw.
+  </mat-card>
+
+  <div *ngIf="filmsEigenLijst$ | async as films">
+    <div
+      fxLayout="row wrap"
+      fxLayout.xs="column"
+      fxLayoutGap="0.5%"
+      fxLayoutAlign="start"
+    >
+      <div
+        class="film"
+        *ngFor="let localFilm of filmsEigenLijst$ | async"
+        fxFlex="0 0 calc(35%-1.%)"
+        fxFlex.xs="100%"
+        style="padding-bottom: 10px;"
+      >
+        <!-- fxFlex="0 0 calc(33.3%-0.5%)" -->
+        <app-film [film]="localFilm" data-cy="filmCard"></app-film>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loadingOrError> </ng-template>
+</div>

@@ -3,7 +3,7 @@ import { FilmSchrijver, FilmSchrijverJson } from "./filmSchrijver.model";
 import { FilmActeur, FilmActeurJson } from "./filmActeur.model";
 
 interface FilmJson {
-  id: number;
+  filmID: number;
   titel: string;
   jaar: number;
   duur: string;
@@ -17,8 +17,8 @@ interface FilmJson {
 }
 
 export class Film {
-  private _id: number;
   constructor(
+    private _filmID: number,
     private _titel: string,
     private _jaar: number,
     private _duur: string,
@@ -33,6 +33,7 @@ export class Film {
 
   static fromJSON(json: FilmJson): Film {
     const film = new Film(
+      json.filmID,
       json.titel,
       json.jaar,
       json.duur,
@@ -44,11 +45,11 @@ export class Film {
       json.korteInhoud,
       json.aantalDuimenOmhoog
     );
-    film._id = json.id;
+    //  film._filmId = json.filmId;
     return film;
   }
-  get id(): number {
-    return this._id;
+  get filmId(): number {
+    return this._filmID;
   }
 
   get titel(): string {

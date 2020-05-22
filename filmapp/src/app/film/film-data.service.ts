@@ -5,6 +5,8 @@ import { environment } from "src/environments/environment";
 import { map, catchError, tap } from "rxjs/operators";
 import { Observable, pipe, EMPTY, throwError, BehaviorSubject } from "rxjs";
 import { Genre } from "./genre.model";
+import { LoginComponent } from "../user/login/login.component";
+import { FormGroup, Form } from "@angular/forms";
 @Injectable({
   providedIn: "root",
 })
@@ -16,7 +18,6 @@ export class FilmDataService {
   private _reloadFilms$ = new BehaviorSubject<boolean>(true);
 
   constructor(private http: HttpClient) {}
-
 
   get films$(): Observable<Film[]> {
     return this.http.get(`${environment.apiUrl}/films/`).pipe(
@@ -49,6 +50,16 @@ export class FilmDataService {
       );
   }
 
+  get EigenLijstFilms$():Observable<Film[]>{
+    return this.http
+      .get(`${environment.apiUrl}/gebruiker/GetEigenLijstFilms/`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError),
+        map((list: any[]): Film[] => list.map(Film.fromJSON))
+      );
+  }
+
   detailsFilm$(titel: string): Observable<Film> {
     this._film$ = this.http
       .get(`${environment.apiUrl}/films/getFilmByTitle/${titel}`)
@@ -68,9 +79,18 @@ export class FilmDataService {
     return this._filmsByGenre$;
   }
 
-  verwijderFilm(film: Film){
-    return this.http.delete(`${environment.apiUrl}/films/deleteFilm/${film.titel}`)
-    .pipe(tap(console.log), catchError(this.handleError))
+  verwijderFilm(film: Film) {
+    return this.http
+      .delete(`${environment.apiUrl}/Gebruiker/DeleteFilm/${film.filmId}`)
+      .pipe(tap(console.log), catchError(this.handleError))
+      .subscribe(() => {
+        this._reloadFilms$.next(true);
+      });
+  }
+  upvoteFilm(film: Film) {
+    return this.http
+      .put(`${environment.apiUrl}/Gebruiker/VoegtDuimToe/${film.titel}`, film)
+      .pipe(tap(console.log), catchError(this.handleError))
       .subscribe(() => {
         this._reloadFilms$.next(true);
       });

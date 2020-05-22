@@ -73,6 +73,8 @@ export class FilmListComponent implements OnInit {
   get films$(): Observable<Film[]> {
     return this._fetchFilms$;
   }
+  
+  
   ngOnInit(): void {
     (this._fetchFilms$ = this._filmDataService.films$.pipe(
       catchError((err) => {

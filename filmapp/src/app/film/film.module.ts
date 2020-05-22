@@ -13,12 +13,17 @@ import { FilmResolver } from "./FilmResolver";
 import { RouterModule, Routes } from "@angular/router";
 import { MatSelectModule } from "@angular/material/select";
 import { FilmGenreFilterPipe } from "./film-genre-filter.pipe";
-import { FilmJaarFilterPipe } from './film-jaar-filter.pipe';
+import { FilmJaarFilterPipe } from "./film-jaar-filter.pipe";
+import { EigenFilmLijstComponent } from "./eigen-film-lijst/eigen-film-lijst.component";
 
-const routes:Routes = [
+const routes: Routes = [
   {
     path: "lijst",
     component: FilmListComponent,
+  },
+  {
+    path: "eigenLijst",
+    component: EigenFilmLijstComponent,
   },
   {
     path: "detailFilm/:titel",
@@ -39,6 +44,7 @@ const routes:Routes = [
     FilmDetailComponent,
     FilmGenreFilterPipe,
     FilmJaarFilterPipe,
+    EigenFilmLijstComponent,
   ],
   imports: [
     CommonModule,

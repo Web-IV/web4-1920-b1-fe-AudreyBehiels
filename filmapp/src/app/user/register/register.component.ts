@@ -111,15 +111,15 @@ export class RegisterComponent implements OnInit {
               this.router.navigate(["/film/lijst"]);
             }
           } else {
-            this.errorMessage = `Could not register`;
+            this.errorMessage = `kan zich niet registreren`;
           }
         },
         (err: HttpErrorResponse) => {
           console.log(err);
           if (err.error instanceof Error) {
-            this.errorMessage = `Error while trying to register user ${this.user.value.email}: ${err.error.message}`;
+            this.errorMessage = `Fout bij het registreren van ${this.user.value.email}: ${err.error.message}`;
           } else {
-            this.errorMessage = `Error ${err.status} while trying to register user ${this.user.value.email}: ${err.error}`;
+            this.errorMessage = `fout ${err.status} bij het proberen registreren van ${this.user.value.email}: ${err.error}`;
           }
         }
       );
@@ -130,21 +130,21 @@ export class RegisterComponent implements OnInit {
       return null;
     }
     if (errors.required) {
-      return "is required";
+      return "is verplicht";
     } else if (errors.minlength) {
-      return `needs at least ${errors.minlength.requiredLength} characters (got ${errors.minlength.actualLength})`;
+      return `Er moeten ten minste ${errors.minlength.requiredLength} karakters in zitten (heeft er ${errors.minlength.actualLength})`;
     } else if (errors.hasNumber) {
-      return `needs at least 1 number`;
+      return `Er moet mistens 1 nummer in zitten`;
     } else if (errors.hasUpperCase) {
-      return `needs at least 1 upper case letter`;
+      return `Er moet mistens 1 hoofletter in zitten`;
     } else if (errors.hasNumber) {
-      return `needs at least 1 lower case letter`;
+      return `Er moet mistens 1 kleine letter in zitten`;
     } else if (errors.userAlreadyExists) {
-      return `user already exists`;
+      return `Gebruiker bestaat al`;
     } else if (errors.email) {
-      return `not a valid email address`;
+      return `Geen geldig mailadres`;
     } else if (errors.passwordsDiffer) {
-      return `passwords are not the same`;
+      return `Wachtwoorden zijn niet hetzelfde`;
     }
   }
 }

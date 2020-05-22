@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       mailadres: ["", Validators.required],
       wachtwoord: ["", Validators.required],
     });
+    
   }
   onSubmit() {
     this.authService
@@ -51,7 +52,7 @@ export class LoginComponent implements OnInit {
               this.router.navigate(["/films/lijst"]);
             }
           } else {
-            this.errorMessage = `Could not login`;
+            this.errorMessage = `Kan niet inloggen`;
           }
         },
         (err: HttpErrorResponse) => {

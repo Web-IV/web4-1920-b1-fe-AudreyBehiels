@@ -14,7 +14,7 @@ import { AuthenticationService } from "src/app/user/authentication.service";
 export class FilmDetailComponent implements OnInit {
   public film: Film;
   private _fetchFilm$: Observable<Film>;
-
+  
   public errorMessage: string = "";
   constructor(
     private _authenticationService: AuthenticationService,
@@ -37,11 +37,17 @@ export class FilmDetailComponent implements OnInit {
   }
 
   verwijderFilm() {
-    this._filmDataService.verwijderFilm(this.film);
+    
+    if(this._filmDataService.verwijderFilm(this.film )){
+
+      console.log("Film is verwijderd");
+    }
   }
 
-  upvote() {}
-  downvote() {}
+  upvote() {
+    this._filmDataService.upvoteFilm(this.film);
+    
+  }
 
   isUserLoggedIn(){
     return this._authenticationService.isLoggedIn;
