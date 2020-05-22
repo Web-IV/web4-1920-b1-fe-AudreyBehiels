@@ -3,7 +3,7 @@ import { Observable } from "rxjs/internal/Observable";
 import { Film } from "../film.model";
 import { FilmDataService } from "../film-data.service";
 import { catchError } from "rxjs/internal/operators/catchError";
-import { EMPTY } from "rxjs/internal/observable/empty";
+import { EMPTY, empty } from "rxjs/internal/observable/empty";
 
 @Component({
   selector: "app-eigen-film-lijst",
@@ -16,15 +16,20 @@ export class EigenFilmLijstComponent implements OnInit {
   constructor(private _filmDataService: FilmDataService) {}
 
   get filmsEigenLijst$(): Observable<Film[]> {
-    return this._fetchFilmsEigenLijst$;
+  // this.ngOnInit();
+  //return this._filmDataService.EigenLijstFilms$;
+   return this._fetchFilmsEigenLijst$;
   }
 
   ngOnInit(): void {
     this._fetchFilmsEigenLijst$ = this._filmDataService.EigenLijstFilms$.pipe(
+      
       catchError((err) => {
         this.errorMessage = err;
         return EMPTY;
       })
-    );
+    )
+    ;
+
   }
 }

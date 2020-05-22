@@ -33,7 +33,7 @@
               </div>
               <br /><b>Productiebedrijf: </b>{{ film.productiebedrijf }}
               <br /><br /><b>Korte inhoud: </b><br />{{ film.korteInhoud }}
-              <br /> <br /> <b>Upvotes: </b> {{film.aantalDuimenOmhoog}}
+              <br /> <br /> <b>Thumbs up: </b> {{film.aantalDuimenOmhoog}}
               <!-- <div *ngIf="isLoggedIn()"></div>-->
             </mat-list>
           </div>
@@ -41,9 +41,17 @@
             <button (click)="verwijderFilm()"  >
               <mat-icon>delete_forever</mat-icon>
             </button>
+
             <button (click)="upvote()" >
               <span class="material-icons">
                 thumb_up
+              </span>
+             </button>
+             <br>
+             <span>Toevoegen aan eigen lijst</span>
+            <button (click)="ToevoegenAanEigenLijst()" >
+            <span class="material-icons">
+              add
               </span>
             </button>
           </div>
@@ -62,4 +70,12 @@
       </tr>
     </mat-card-content>
   </div>
+ 
+</mat-card>
+<mat-card
+  class="confirmation"
+  *ngIf="confirmationMessage"
+  data-cy="appConfirmation"
+>
+  {{ confirmationMessage }}
 </mat-card>

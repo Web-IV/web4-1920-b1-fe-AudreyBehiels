@@ -50,7 +50,7 @@ export class FilmDataService {
       );
   }
 
-  get EigenLijstFilms$():Observable<Film[]>{
+  get EigenLijstFilms$(): Observable<Film[]> {
     return this.http
       .get(`${environment.apiUrl}/gebruiker/GetEigenLijstFilms/`)
       .pipe(
@@ -79,7 +79,7 @@ export class FilmDataService {
     return this._filmsByGenre$;
   }
 
-  verwijderFilm(film: Film) {
+  verwijderFilm$(film: Film) {
     return this.http
       .delete(`${environment.apiUrl}/Gebruiker/DeleteFilm/${film.filmId}`)
       .pipe(tap(console.log), catchError(this.handleError))
@@ -87,13 +87,25 @@ export class FilmDataService {
         this._reloadFilms$.next(true);
       });
   }
-  upvoteFilm(film: Film) {
+  upvoteFilm$(film: Film) {
     return this.http
       .put(`${environment.apiUrl}/Gebruiker/VoegtDuimToe/${film.titel}`, film)
       .pipe(tap(console.log), catchError(this.handleError))
       .subscribe(() => {
         this._reloadFilms$.next(true);
       });
+  }
+
+  ToevoegenAanEigenLijst$(film: Film) {
+    return this.http
+      .put(
+        `${environment.apiUrl}/Gebruiker/voegFilmAanLijst/${film.filmId}`,
+        film
+      )
+      .pipe(tap(console.log), catchError(this.handleError))
+      .subscribe(()=>
+       { this._reloadFilms$.next(true);}
+      );
   }
 
   handleError(err: any): Observable<never> {

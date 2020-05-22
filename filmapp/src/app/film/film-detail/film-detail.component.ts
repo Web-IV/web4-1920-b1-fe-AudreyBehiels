@@ -12,9 +12,10 @@ import { AuthenticationService } from "src/app/user/authentication.service";
   styleUrls: ["./film-detail.component.css"],
 })
 export class FilmDetailComponent implements OnInit {
-  public film: Film;
+ @Input() public film: Film;
   private _fetchFilm$: Observable<Film>;
-  
+
+  public confirmationMessage: string = '';
   public errorMessage: string = "";
   constructor(
     private _authenticationService: AuthenticationService,
@@ -37,19 +38,27 @@ export class FilmDetailComponent implements OnInit {
   }
 
   verwijderFilm() {
-    
-    if(this._filmDataService.verwijderFilm(this.film )){
-
+    if (this._filmDataService.verwijderFilm$(this.film)) {
       console.log("Film is verwijderd");
     }
   }
 
   upvote() {
-    this._filmDataService.upvoteFilm(this.film);
-    
+   // this._filmDataService.upvoteFilm$(this.film)
+    if(this._filmDataService.upvoteFilm$(this.film)){
+    this.confirmationMessage = "Thumbs up voor "+ this.film.titel ;
+ }
+    this._filmDataService.detailsFilm$(this.film.titel);
   }
 
-  isUserLoggedIn(){
+  ToevoegenAanEigenLijst() {
+    console.log("ik wil toevoegen");
+    this._filmDataService.ToevoegenAanEigenLijst$(this.film);
+    this.confirmationMessage = this.film.titel + " is toegevoegd aan uw lijst";
+   //this._filmDataService.EigenLijstFilms$;
+  }
+
+  isUserLoggedIn() {
     return this._authenticationService.isLoggedIn;
   }
   /*this.route.paramMap.subscribe(pa=> 

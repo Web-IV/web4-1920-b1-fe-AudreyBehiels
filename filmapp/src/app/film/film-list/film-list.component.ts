@@ -26,17 +26,9 @@ export class FilmListComponent implements OnInit {
   public errorMessage: string;
   public selected: string;
   public filterFilm$ = new Subject<String>();
-//  public filterFilmJaar$ = new Subject<Number>();
 
   constructor(private _filmDataService: FilmDataService) {
-    /*this.filterFilmJaar$
-    .pipe(
-      distinctUntilChanged(),
-      debounceTime(400),
-      map((val) => val)
-    )
-    .subscribe((val) => this.filterFilmJaar == val);*/
-
+  
     this.filterFilm$
       .pipe(
         distinctUntilChanged(),
