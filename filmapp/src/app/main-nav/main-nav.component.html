@@ -37,13 +37,13 @@
       <span *ngIf="loggedInUser$ | async as user; else loginTemplate">
         {{ user }}
         <button (click)="logout()" mat-flat-button>
-          Logout
+          Afmelden
         </button>
       </span>
       <ng-template #loginTemplate>
         <span>
           <button (click)="login()" mat-flat-button>
-            Login
+            Inloggen
           </button>
         </span>
       </ng-template>

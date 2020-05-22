@@ -5,6 +5,9 @@ import { Film } from "./film.model";
 })
 export class FilmGenreFilterPipe implements PipeTransform {
   transform(films: Film[], selected: string): Film[] {
+    if (selected == "Alle genres") {
+      return films;
+    }
     if (selected == null) {
       return films;
     }

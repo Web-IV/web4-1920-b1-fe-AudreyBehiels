@@ -8,7 +8,7 @@
 
     <mat-card-content>
       <tr>
-        <td style="width: 700px;">
+        <td style="width: 900px;">
           <div>
             <mat-list class="filmInfo">
               <b>Jaar: </b>{{ film.jaar }} <br /><b>Duur: </b
@@ -33,31 +33,36 @@
               </div>
               <br /><b>Productiebedrijf: </b>{{ film.productiebedrijf }}
               <br /><br /><b>Korte inhoud: </b><br />{{ film.korteInhoud }}
-              <br /> <br /> <b>Thumbs up: </b> {{film.aantalDuimenOmhoog}}
+              <br />
+              <br />
+              <b>Thumbs up: </b> {{ film.aantalDuimenOmhoog }}
               <!-- <div *ngIf="isLoggedIn()"></div>-->
             </mat-list>
           </div>
-          <div *ngIf="isUserLoggedIn()">
-            <button (click)="verwijderFilm()"  >
-              <mat-icon>delete_forever</mat-icon>
-            </button>
+          <br />
+          <div class="knoppen">
+            <div *ngIf="isUserLoggedIn()">
+              <button (click)="verwijderFilm()">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
 
-            <button (click)="upvote()" >
-              <span class="material-icons">
-                thumb_up
-              </span>
-             </button>
-             <br>
-             <span>Toevoegen aan eigen lijst</span>
-            <button (click)="ToevoegenAanEigenLijst()" >
-            <span class="material-icons">
-              add
-              </span>
-            </button>
+              <button (click)="upvote()">
+                <span class="material-icons">
+                  thumb_up
+                </span>
+              </button>
+              <br />
+              <span class="filmInfo">Toevoegen aan eigen lijst&ensp;</span>
+              <button (click)="ToevoegenAanEigenLijst()">
+                <span class="material-icons">
+                  add
+                </span>
+              </button>
+            </div>
           </div>
         </td>
-        <td style="width: 100px;"></td>
-        <td>
+        <td style="width: 50px;"></td>
+        <td style="width: 200px;">
           <div>
             <br />
             <img
@@ -70,9 +75,10 @@
       </tr>
     </mat-card-content>
   </div>
- 
 </mat-card>
+<br />
 <mat-card
+  style="margin-left: 1vw;"
   class="confirmation"
   *ngIf="confirmationMessage"
   data-cy="appConfirmation"
