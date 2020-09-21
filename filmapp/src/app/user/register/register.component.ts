@@ -108,7 +108,7 @@ export class RegisterComponent implements OnInit {
               this.router.navigateByUrl(this.authService.redirectUrl);
               this.authService.redirectUrl = undefined;
             } else {
-              this.router.navigate(["/film/lijst"]);
+              this.router.navigate(["/films/lijst"]);
             }
           } else {
             this.errorMessage = `kan zich niet registreren`;
